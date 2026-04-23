@@ -1,0 +1,36 @@
+# Environments
+venv/
+.env/
+env/
+ENV/
+
+# Security (CRITICAL: Do not commit connection strings!)
+.env
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+
+# Pytest / Coverage (If added later)
+.pytest_cache/
+.coverage
+htmlcov/
