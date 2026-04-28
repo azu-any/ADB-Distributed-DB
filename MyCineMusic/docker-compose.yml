@@ -1,0 +1,96 @@
+services:
+  coordinator:
+    image: postgres:16
+    container_name: mycine_coordinator
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mycinemusic
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./coordinator:/docker-entrypoint-initdb.d
+    depends_on:
+      - regional_mx
+      - regional_us
+      - film_action
+      - film_romance
+      - film_scifi
+      - soundtrack_classical
+      - soundtrack_jazz
+      - soundtrack_pop
+      - analytics
+      - admin_secure
+
+  regional_mx:
+    image: postgres:16
+    container_name: mycine_regional_mx
+    environment: &pg_env
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mycinemusic
+    ports: ["5433:5432"]
+    volumes: ["./regional_mx:/docker-entrypoint-initdb.d"]
+
+  regional_us:
+    image: postgres:16
+    container_name: mycine_regional_us
+    environment: *pg_env
+    ports: ["5434:5432"]
+    volumes: ["./regional_us:/docker-entrypoint-initdb.d"]
+
+  film_action:
+    image: postgres:16
+    container_name: mycine_film_action
+    environment: *pg_env
+    ports: ["5435:5432"]
+    volumes: ["./film_action:/docker-entrypoint-initdb.d"]
+
+  film_romance:
+    image: postgres:16
+    container_name: mycine_film_romance
+    environment: *pg_env
+    ports: ["5436:5432"]
+    volumes: ["./film_romance:/docker-entrypoint-initdb.d"]
+
+  film_scifi:
+    image: postgres:16
+    container_name: mycine_film_scifi
+    environment: *pg_env
+    ports: ["5437:5432"]
+    volumes: ["./film_scifi:/docker-entrypoint-initdb.d"]
+
+  soundtrack_classical:
+    image: postgres:16
+    container_name: mycine_soundtrack_classical
+    environment: *pg_env
+    ports: ["5438:5432"]
+    volumes: ["./soundtrack_classical:/docker-entrypoint-initdb.d"]
+
+  soundtrack_jazz:
+    image: postgres:16
+    container_name: mycine_soundtrack_jazz
+    environment: *pg_env
+    ports: ["5439:5432"]
+    volumes: ["./soundtrack_jazz:/docker-entrypoint-initdb.d"]
+
+  soundtrack_pop:
+    image: postgres:16
+    container_name: mycine_soundtrack_pop
+    environment: *pg_env
+    ports: ["5440:5432"]
+    volumes: ["./soundtrack_pop:/docker-entrypoint-initdb.d"]
+
+  analytics:
+    image: postgres:16
+    container_name: mycine_analytics
+    environment: *pg_env
+    ports: ["5441:5432"]
+    volumes: ["./analytics:/docker-entrypoint-initdb.d"]
+
+  admin_secure:
+    image: postgres:16
+    container_name: mycine_admin_secure
+    environment: *pg_env
+    ports: ["5442:5432"]
+    volumes: ["./admin_secure:/docker-entrypoint-initdb.d"]
