@@ -89,7 +89,7 @@ with st.form(key=f"form_{query.key}"):
                     key=f"{query.key}_{name}",
                 )
 
-    run_button = st.form_submit_button("Run query", type="primary")
+    run_button = st.form_submit_button("Run query")
 
 if run_button:
     try:
