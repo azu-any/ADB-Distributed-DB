@@ -3,14 +3,14 @@
 Welcome to the backend repository for **MyCineMusic**, a Distributed Database Management System built for a university project. This backend is designed to connect to three separate PostgreSQL nodes hosted on DigitalOcean, implementing custom fragmentation and replication strategies at the application layer.
 
 ## Architecture
+ **1 coordinador** (puerto 5432): expone vistas globales `global.*` mediante `postgres_fdw`.
+- **2 nodos regionales** (`regional_mx`, `regional_us`): datos de personas y cinephiles según ubicación geográfica.
+- **3 fragmentos de películas** (`film_action`, `film_romance`, `film_scifi`): fragmentación horizontal por clasificación.
+- **3 fragmentos de soundtracks** (`soundtrack_classical`, `soundtrack_jazz`, `soundtrack_pop`): fragmentación horizontal por género musical.
+- **1 nodo de analítica** (`analytics`): claves de cinephiles y relaciones no sensibles (favoritos).
+- **1 nodo administrativo seguro** (`admin_secure`): datos financieros de inversiones no replicados.
 
-The system utilizes a hybrid fragmentation strategy (horizontal, vertical, and derived) to distribute data across three specific cloud nodes:
-
-1. **Regional Node (Node 1)**: Stores local users' sensitive personal data (e.g., Cinephile Name, Email, Phone) and horizontally fragmented Person records.
-2. **Global/Analytics Node (Node 2)**: Stores cross-region catalog data, Cinephile IDs, and their preferences to process global queries efficiently.
-3. **Secure Admin Node (Node 3)**: Exclusively stores highly sensitive financial and producer data (strict no-replication policy).
-
-**Tech Stack**: Python, FastAPI, SQLAlchemy, Pydantic.
+**Tech Stack**: Python, Streamlit.
 
 ---
 

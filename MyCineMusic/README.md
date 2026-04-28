@@ -67,6 +67,7 @@ PGSCHEMA=global
 - `queries.py` - Query catalog/query space.
 - `requirements.txt` - Python dependencies.
 - `.env.example` - Example connection settings.
+
 # MyCineMusic Distributed DBMS
 
 Proyecto final de Bases de Datos Avanzadas – LIS 3012.
